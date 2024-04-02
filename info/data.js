@@ -1,7 +1,7 @@
 function getErrorInfo(info) {
-    console.log(info)
+    console.log(info.body)
     if (info.message === undefined || info.message === null)
-        return info
+        return info.body
     else
         return {
             status: -1,
