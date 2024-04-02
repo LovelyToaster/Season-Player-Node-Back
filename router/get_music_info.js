@@ -18,27 +18,24 @@ async function getMusicInfo(query) {
         const search = await getSearch(query)
         const musicList = await getMusicListAll(setQuery(search.body.result.playlists[0], query.cookie))
         const checkInfo = await checkMusic(setQuery(musicList.body.songs[0], query.cookie))
-        if (checkInfo.body.success === true) {
-            const musicSrc = await getMusicSrc(setQuery(musicList.body.songs[0], query.cookie));
-            return getNormalInfo({
-                musicSrc: musicSrc.body.data[0].url,
-                musicName: musicList.body.songs[0].name
-            })
-        } else {
-            throw new Error("此歌曲无法播放")
-        }
+        const musicSrc = await getMusicSrc(setQuery(musicList.body.songs[0], query.cookie));
+        return getNormalInfo({
+            musicSrc: musicSrc.body.data[0].url,
+            musicName: musicList.body.songs[0].name,
+            musicTime: musicSrc.body.data[0].time,
+            musicCheck: checkInfo.body.success
+        })
     } else if (query.type === "1") {
         const search = await getSearch(query)
         const checkInfo = await checkMusic(setQuery(search.body.result.songs[0], query.cookie))
-        if (checkInfo.body.success === true) {
-            const musicSrc = await getMusicSrc(setQuery(search.body.result.songs[0], query.cookie));
-            return getNormalInfo({
-                musicSrc: musicSrc.body.data[0].url,
-                musicName: search.body.result.songs[0].name
-            })
-        } else {
-            throw new Error("此歌曲无法播放")
-        }
+        const musicSrc = await getMusicSrc(setQuery(search.body.result.songs[0], query.cookie))
+        return getNormalInfo({
+            musicSrc: musicSrc.body.data[0].url,
+            musicName: search.body.result.songs[0].name,
+            musicTime: musicSrc.body.data[0].time,
+            musicCheck: checkInfo.body.success
+        })
+
     } else {
         throw new Error("参数不匹配")
     }
