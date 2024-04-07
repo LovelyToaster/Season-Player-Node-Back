@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
-const {search} = require("NeteaseCloudMusicApi")
+const {cloudsearch} = require("NeteaseCloudMusicApi")
 const {getErrorInfo, getBody} = require("../info/data")
 
 async function getSearch(query) {
-    return await search({
+    return await cloudsearch({
         keywords: query.keywords,
         type: query.type || 1, // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频
         limit: query.limit || 30,
