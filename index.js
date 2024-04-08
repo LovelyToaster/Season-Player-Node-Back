@@ -7,6 +7,7 @@ const musicSrc = require("./router/song_url_v1").router
 const musicInfo = require("./router/get_music_info")
 const login = require("./router/login")
 const captcha = require("./router/captcha")
+const lyric = require("./router/lyric")
 const cors = require("cors")
 const port = 3000
 
@@ -25,5 +26,6 @@ app.use("/song", musicSrc)
 app.use("/get", musicInfo)
 app.use("/login", login)
 app.use("/captcha", captcha)
+app.use("/lyric", lyric)
 
 app.listen(port)
