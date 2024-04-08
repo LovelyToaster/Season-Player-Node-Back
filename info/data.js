@@ -1,13 +1,19 @@
 function getErrorInfo(info) {
-    console.log(info.body)
-    if (info.message === undefined || info.message === null)
+    if (info.message === undefined || info.message === null) {
+        console.log(info.body)
         return info.body
-    else
+    } else {
+        console.log({
+            status: -1,
+            info: "error",
+            data: info.message
+        })
         return {
             status: -1,
             info: "error",
             data: info.message
         }
+    }
 }
 
 function getNormalInfo(info) {
