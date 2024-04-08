@@ -25,7 +25,10 @@ async function getMusicInfo(query) {
                 musicPhoto: musicList.body.songs[i].al.picUrl,
             })
         }
-        return getNormalInfo(musicInfoList)
+        return getNormalInfo({
+            musicListName: search.body.result.playlists[0].name,
+            musicInfoList
+        })
     } else if (query.type === "1") {
         const search = await getSearch(query)
         const checkInfo = await checkMusic(setQuery(search.body.result.songs[0], query.cookie))
