@@ -17,14 +17,15 @@ async function getMusicInfo(query) {
     if (query.type === "1000") {
         const search = await getSearch(query)
         const musicList = await getMusicListAll(setQuery(search.body.result.playlists[0], query.cookie))
-        const checkInfo = await checkMusic(setQuery(musicList.body.songs[0], query.cookie))
-        const musicSrc = await getMusicSrc(setQuery(musicList.body.songs[0], query.cookie));
-        return getNormalInfo({
-            musicSrc: musicSrc.body.data[0].url,
-            musicName: musicList.body.songs[0].name,
-            musicTime: musicSrc.body.data[0].time,
-            musicCheck: checkInfo.body.success
-        })
+        let musicInfoList = []
+        for (let i = 0; i < musicList.body.songs.length; i++) {
+            musicInfoList.push({
+                musicId: musicList.body.songs[i].id,
+                musicName: musicList.body.songs[i].name,
+                musicPhoto: musicList.body.songs[i].al.picUrl,
+            })
+        }
+        return getNormalInfo(musicInfoList)
     } else if (query.type === "1") {
         const search = await getSearch(query)
         const checkInfo = await checkMusic(setQuery(search.body.result.songs[0], query.cookie))

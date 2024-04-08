@@ -2,7 +2,19 @@
 <project version="4">
   <component name="GitCommitMessageStorage">
     <option name="messageStorage">
-      <MessageStorage />
+      <MessageStorage>
+        <option name="commitTemplate">
+          <CommitTemplate>
+            <option name="body" value="" />
+            <option name="changes" value="" />
+            <option name="closes" value="" />
+            <option name="scope" value="" />
+            <option name="skipCi" value="" />
+            <option name="subject" value="当查询的是歌单，没有必要返回第一首歌曲" />
+            <option name="type" value="perf" />
+          </CommitTemplate>
+        </option>
+      </MessageStorage>
     </option>
   </component>
 </project>
