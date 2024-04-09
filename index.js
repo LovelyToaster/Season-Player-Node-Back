@@ -12,20 +12,21 @@ const cors = require("cors")
 const port = 3000
 
 app.use(cors())
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
     const data = {
         status: 1,
         info: "服务正常"
     }
     res.json(data)
 })
-app.use("/search", search)
-app.use("/playlist", trackAll)
-app.use("/check", checkMusic)
-app.use("/song", musicSrc)
-app.use("/get", musicInfo)
-app.use("/login", login)
-app.use("/captcha", captcha)
-app.use("/lyric", lyric)
+app.use("/api/search", search)
+app.use("/api/playlist", trackAll)
+app.use("/api/check", checkMusic)
+app.use("/api/song", musicSrc)
+app.use("/api/get", musicInfo)
+app.use("/api/login", login)
+app.use("/api/captcha", captcha)
+app.use("/api/lyric", lyric)
 
 app.listen(port)
+console.log("服务器运行在端口:" + port)
